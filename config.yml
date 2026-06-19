@@ -1,0 +1,15 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@gmail.com
+      name: Hemanth Reddy
+      password: admin123
+
+cookie:
+  expiry_days: 30
+  key: some_signature_key
+  name: wineiq_cookie
+
+preauthorized:
+  emails:
+    - admin@gmail.com

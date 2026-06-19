@@ -1,0 +1,224 @@
+/* ==========================================
+   MAIN APP
+========================================== */
+
+.stApp {
+    background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e293b 50%,
+        #111827 100%
+    );
+    color: white;
+}
+
+/* ==========================================
+   HERO SECTION
+========================================== */
+
+.hero {
+    text-align: center;
+    padding: 30px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.hero h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.hero p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+}
+
+/* ==========================================
+   METRIC CARDS
+========================================== */
+
+[data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+
+    padding: 20px;
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.3);
+
+    transition: all 0.3s ease;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.4);
+}
+
+[data-testid="stMetricLabel"] {
+    color: #cbd5e1 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: white !important;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.stButton button {
+    width: 100%;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        45deg,
+        #9333ea,
+        #ec4899
+    );
+
+    color: rgb(204, 94, 9);
+    border: none;
+    padding: 12px;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.stButton button:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+section[data-testid="stSidebar"] {
+    background: linear-gradient(
+        180deg,
+        #111827,
+        #1f2937
+    );
+}
+
+/* Fix invisible sidebar text */
+
+section[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+/* Sidebar radio buttons */
+
+section[data-testid="stSidebar"] label {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+h1, h2, h3, h4 {
+    color: white !important;
+}
+
+p {
+    color: #d1d5db;
+}
+
+/* ==========================================
+   DATAFRAME
+========================================== */
+
+[data-testid="stDataFrame"] {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* ==========================================
+   TABLES
+========================================== */
+
+table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ==========================================
+   PLOTLY CHARTS
+========================================== */
+
+.js-plotly-plot {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+[data-testid="stPlotlyChart"] {
+    background: rgba(255,255,255,0.05);
+
+    padding: 10px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ==========================================
+   ALERTS
+========================================== */
+
+.stSuccess,
+.stInfo,
+.stWarning,
+.stError {
+    border-radius: 12px;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+div.stDownloadButton button {
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #ec4899
+    ) !important;
+
+    color: white !important;
+
+    font-weight: 600 !important;
+
+    border-radius: 15px !important;
+
+    border: none !important;
+
+    box-shadow: 0 8px 20px rgba(236,72,153,0.4);
+}
