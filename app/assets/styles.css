@@ -388,24 +388,44 @@ section[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
 }
 
 /* ============================================================
-   INPUTS
+   INPUTS - FIXED VISIBILITY
    ============================================================ */
 
-.stNumberInput input, .stTextInput input, .stSelectbox > div, .stMultiSelect > div {
-    background: var(--glass-bg) !important;
-    border: 1px solid var(--glass-border) !important;
+.stNumberInput input,
+.stTextInput input,
+.stSelectbox > div,
+.stMultiSelect > div {
+    background: #f5f5f5 !important;
+    color: #111111 !important;
+    border: 2px solid var(--gold-500) !important;
     border-radius: var(--radius-sm) !important;
-    color: var(--cream-100) !important;
+    font-weight: 600 !important;
 }
 
-.stNumberInput input:focus, .stTextInput input:focus {
-    border-color: var(--gold-500) !important;
-    box-shadow: 0 0 0 3px rgba(201,162,39,0.18) !important;
+.stNumberInput input::placeholder,
+.stTextInput input::placeholder {
+    color: #666666 !important;
+    opacity: 1 !important;
+}
+
+.stNumberInput input:focus,
+.stTextInput input:focus {
+    border-color: var(--gold-400) !important;
+    box-shadow: 0 0 0 3px rgba(201,162,39,0.25) !important;
+}
+
+.stNumberInput button {
+    color: var(--wine-950) !important;
+    background: #f5f5f5 !important;
+}
+
+.stNumberInput button:hover {
+    background: var(--gold-300) !important;
 }
 
 label[data-testid="stWidgetLabel"] p {
-    color: var(--cream-300) !important;
-    font-weight: 500;
+    color: var(--cream-100) !important;
+    font-weight: 600 !important;
 }
 
 /* ============================================================
