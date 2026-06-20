@@ -114,11 +114,11 @@ def load_dataset():
 def load_artifacts():
 
     model = joblib.load(
-        MODEL_PATH
+        MODEL_PATH = "models/model.pkl"
     )
 
     scaler = joblib.load(
-        SCALER_PATH
+        SCALER_PATH = "models/scaler.pkl"
     )
 
     return model, scaler
