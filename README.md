@@ -187,11 +187,11 @@ This project uses the [UCI Wine Quality dataset](https://archive.ics.uci.edu/dat
 
 | Dashboard | Prediction |
 |---|---|
-| ![Dashboard](screenshots/dashboard.png) | ![Prediction](screenshots/prediction.png) |
+| ![Dashboard](screenshots/dashboard.png) | ![Prediction](screenshots/Prediction.png) |
 
 | Analytics | Model Insights |
 |---|---|
-| ![Analytics](screenshots/analytics.png) | ![Model Insights](screenshots/model_insights.png) |
+| ![Analytics](screenshots/Analytics.png) | ![Model Insights](screenshots/model_insights.png) |
 
 <details>
 <summary>How to capture these</summary>
