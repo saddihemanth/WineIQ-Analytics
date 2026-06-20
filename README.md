@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="WineIQ Analytics banner" width="100%">
+
 
 # 🍷 WineIQ Analytics
 
