@@ -16,7 +16,7 @@
 
 *Predicting wine quality from physicochemical attributes — built with Streamlit, scikit-learn, and Plotly.*
 
-[Live Demo](#) · [Report Bug](https://github.com/saddihemanth/WineIQ-Analytics/issues) · [Request Feature](https://github.com/saddihemanth/WineIQ-Analytics/issues)
+[Live Demo](https://wineiq-analytics-ejx3gfpte2detbfcdrg86s.streamlit.app/) · [Report Bug](https://github.com/saddihemanth/WineIQ-Analytics/issues) · [Request Feature](https://github.com/saddihemanth/WineIQ-Analytics/issues)
 
 </div>
 
