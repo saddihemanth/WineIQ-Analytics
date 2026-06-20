@@ -1,0 +1,57 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0509"/>
+      <stop offset="45%" stop-color="#220c18"/>
+      <stop offset="100%" stop-color="#0a0407"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#82213f" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#82213f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a227"/>
+      <stop offset="50%" stop-color="#efd896"/>
+      <stop offset="100%" stop-color="#c9a227"/>
+    </linearGradient>
+    <linearGradient id="titleFill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f8efe0"/>
+      <stop offset="55%" stop-color="#e2c25f"/>
+      <stop offset="100%" stop-color="#f8efe0"/>
+    </linearGradient>
+    <radialGradient id="seal" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#efd896"/>
+      <stop offset="60%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#5c1a33"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="320" fill="url(#bg)"/>
+  <rect width="1280" height="320" fill="url(#glow)"/>
+
+  <!-- corner hairline frame -->
+  <rect x="24" y="24" width="1232" height="272" fill="none" stroke="#c9a227" stroke-opacity="0.35" stroke-width="1"/>
+
+  <!-- wine glass seal -->
+  <circle cx="160" cy="160" r="64" fill="url(#seal)"/>
+  <g transform="translate(160,160)" fill="#0c0509">
+    <path d="M -16 -34 C -16 -10, -10 4, 0 8 C 10 4, 16 -10, 16 -34 Z" />
+    <rect x="-2.5" y="8" width="5" height="20" />
+    <rect x="-16" y="28" width="32" height="5" rx="2.5"/>
+  </g>
+
+  <!-- title block -->
+  <text x="270" y="145" font-family="Georgia, 'Playfair Display', serif" font-size="58" font-weight="700" fill="url(#titleFill)">WineIQ Analytics</text>
+  <rect x="272" y="166" width="120" height="3" fill="url(#gold)"/>
+  <text x="270" y="205" font-family="Verdana, sans-serif" font-size="20" letter-spacing="2" fill="#ddc8ab">AI-POWERED WINE QUALITY INTELLIGENCE PLATFORM</text>
+
+  <!-- footer tags -->
+  <text x="270" y="250" font-family="Verdana, sans-serif" font-size="14" fill="#ab93a0">Python · Streamlit · Scikit-Learn · Plotly</text>
+
+  <!-- decorative right-side rings -->
+  <circle cx="1140" cy="80" r="3" fill="#c9a227"/>
+  <circle cx="1170" cy="120" r="2" fill="#e2c25f"/>
+  <circle cx="1110" cy="150" r="2.5" fill="#c9a227"/>
+  <circle cx="1190" cy="200" r="3" fill="#e2c25f"/>
+  <circle cx="1130" cy="240" r="2" fill="#c9a227"/>
+</svg>

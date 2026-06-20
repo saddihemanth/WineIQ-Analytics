@@ -1,3 +1,4 @@
+
 """
 WineIQ Analytics
 AI-Powered Wine Quality Intelligence Platform
@@ -26,7 +27,11 @@ from components.history import save_prediction
 # ==========================================================
 # PAGE CONFIG
 # ==========================================================
+import streamlit as st
+
+
 st.set_page_config(
+    
     page_title="WineIQ Analytics",
     page_icon="🍷",
     layout="wide",
@@ -154,6 +159,7 @@ def render_hero():
 def dashboard_page():
 
     render_hero()
+   
 
     st.markdown("---")
 

@@ -1,224 +1,492 @@
-/* ==========================================
-   MAIN APP
-========================================== */
+/* ============================================================
+   WineIQ Analytics — Design System
+   Theme: "Cellar at Midnight" — deep bordeaux + aged gold on a
+   near-black backdrop, evoking a wine cellar lit by a single
+   warm light. Built for Streamlit's component DOM.
+   ============================================================ */
 
-.stApp {
-    background: linear-gradient(
-        135deg,
-        #0f172a 0%,
-        #1e293b 50%,
-        #111827 100%
-    );
-    color: white;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+:root {
+    --wine-950: #0c0509;
+    --wine-900: #160810;
+    --wine-800: #220c18;
+    --wine-700: #3a1224;
+    --wine-600: #5c1a33;
+    --wine-500: #82213f;
+    --wine-400: #a6294c;
+
+    --gold-500: #c9a227;
+    --gold-400: #e2c25f;
+    --gold-300: #efd896;
+
+    --cream-100: #f8efe0;
+    --cream-300: #ddc8ab;
+    --muted-400: #ab93a0;
+
+    --glass-bg: rgba(248, 239, 224, 0.045);
+    --glass-bg-strong: rgba(248, 239, 224, 0.07);
+    --glass-border: rgba(212, 175, 55, 0.22);
+
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ==========================================
+/* ============================================================
+   APP BACKGROUND
+   ============================================================ */
+
+.stApp {
+    background:
+        radial-gradient(ellipse 70% 50% at 50% -10%, rgba(130, 33, 63, 0.35), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201, 162, 39, 0.07), transparent 60%),
+        linear-gradient(180deg, var(--wine-950) 0%, #0a0407 55%, var(--wine-950) 100%);
+    font-family: var(--font-body);
+}
+
+.block-container {
+    padding-top: 2.2rem;
+    padding-bottom: 4rem;
+    max-width: 1280px;
+}
+
+::selection {
+    background: var(--gold-500);
+    color: var(--wine-950);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--wine-950); }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--wine-600), var(--gold-500));
+    border-radius: 10px;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display) !important;
+    color: var(--cream-100) !important;
+    letter-spacing: 0.2px;
+}
+
+h2 { border-left: 3px solid var(--gold-500); padding-left: 0.6em; }
+
+p, li, span, label, .stMarkdown { color: var(--cream-300); }
+
+a { color: var(--gold-400) !important; }
+
+hr {
+    border: none !important;
+    height: 1px !important;
+    margin: 2.2rem 0 !important;
+    background: linear-gradient(90deg, transparent, var(--gold-500) 50%, transparent) !important;
+    opacity: 0.55;
+}
+
+code, .stCode, pre {
+    font-family: var(--font-mono) !important;
+}
+
+/* ============================================================
    HERO SECTION
-========================================== */
+   ============================================================ */
 
 .hero {
     text-align: center;
-    padding: 30px;
-    animation: fadeIn 1s ease-in-out;
+    padding: 2.6rem 1rem 2rem;
+    animation: fadeInUp 0.8s var(--ease);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    color: var(--gold-300);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+}
+
+.hero-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold-400);
+    box-shadow: 0 0 8px var(--gold-400);
+    animation: pulse 2s infinite;
 }
 
 .hero h1 {
-    color: white;
-    font-size: 3rem;
+    font-size: clamp(2.1rem, 5vw, 3.4rem) !important;
+    font-weight: 800 !important;
+    margin: 0 0 0.4rem 0 !important;
+    background: linear-gradient(135deg, var(--cream-100) 25%, var(--gold-400) 60%, var(--cream-100) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p.tagline {
+    color: var(--muted-400) !important;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.hero .gold-rule {
+    width: 90px; height: 2px; margin: 1.4rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
+}
+
+/* ============================================================
+   CUSTOM METRIC / KPI CARDS  (wineiq-metric-card)
+   ============================================================ */
+
+.wineiq-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.wineiq-metric-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.3rem;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    animation: fadeInUp 0.6s var(--ease) both;
+}
+
+.wineiq-metric-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold-400), var(--wine-500));
+}
+
+.wineiq-metric-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-500);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,162,39,0.15);
+}
+
+.wineiq-metric-icon { font-size: 1.4rem; opacity: 0.9; }
+
+.wineiq-metric-label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted-400);
+    margin-top: 6px;
+}
+
+.wineiq-metric-value {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
     font-weight: 700;
+    color: var(--cream-100);
+    line-height: 1.2;
 }
 
-.hero p {
-    color: #cbd5e1;
-    font-size: 1.1rem;
+.wineiq-metric-delta {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--gold-400);
 }
 
-/* ==========================================
-   METRIC CARDS
-========================================== */
+/* Stagger animation per card */
+.wineiq-metric-grid .wineiq-metric-card:nth-child(1) { animation-delay: 0.02s; }
+.wineiq-metric-grid .wineiq-metric-card:nth-child(2) { animation-delay: 0.1s; }
+.wineiq-metric-grid .wineiq-metric-card:nth-child(3) { animation-delay: 0.18s; }
+.wineiq-metric-grid .wineiq-metric-card:nth-child(4) { animation-delay: 0.26s; }
 
+/* Native st.metric fallback (used on Model Insights page) */
 [data-testid="stMetric"] {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--glass-bg);
     backdrop-filter: blur(12px);
-
-    padding: 20px;
-    border-radius: 18px;
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    box-shadow:
-        0 8px 24px rgba(0,0,0,0.3);
-
-    transition: all 0.3s ease;
+    padding: 1.1rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: all 0.3s var(--ease);
 }
-
 [data-testid="stMetric"]:hover {
-    transform: translateY(-5px);
-    box-shadow:
-        0 12px 30px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
+    border-color: var(--gold-500);
+}
+[data-testid="stMetricLabel"] { color: var(--muted-400) !important; }
+[data-testid="stMetricValue"] { color: var(--cream-100) !important; font-family: var(--font-display) !important; }
+
+/* ============================================================
+   GENERIC GLASS CARD (used to wrap sections)
+   ============================================================ */
+
+.wineiq-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.7rem;
+    backdrop-filter: blur(14px);
 }
 
-[data-testid="stMetricLabel"] {
-    color: #cbd5e1 !important;
-}
-
-[data-testid="stMetricValue"] {
-    color: white !important;
-}
-
-/* ==========================================
+/* ============================================================
    BUTTONS
-========================================== */
+   ============================================================ */
 
 .stButton button {
     width: 100%;
-    border-radius: 12px;
-
-    background: linear-gradient(
-        45deg,
-        #9333ea,
-        #ec4899
-    );
-
-    color: rgb(204, 94, 9);
-    border: none;
-    padding: 12px;
-
-    font-weight: 600;
-
-    transition: all 0.3s ease;
+    border-radius: var(--radius-sm) !important;
+    background: linear-gradient(135deg, var(--wine-500), var(--wine-700)) !important;
+    color: var(--cream-100) !important;
+    border: 1px solid var(--gold-500) !important;
+    padding: 0.7rem 1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+    transition: all 0.3s var(--ease) !important;
+    box-shadow: 0 6px 18px rgba(92, 26, 51, 0.45);
 }
 
 .stButton button:hover {
-    transform: scale(1.02);
-    opacity: 0.95;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 26px rgba(201, 162, 39, 0.25);
+    border-color: var(--gold-400) !important;
+    color: var(--wine-950) !important;
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important;
 }
 
-/* ==========================================
+div.stDownloadButton button {
+    background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important;
+    color: var(--wine-950) !important;
+    font-weight: 700 !important;
+    border-radius: var(--radius-sm) !important;
+    border: none !important;
+    box-shadow: 0 8px 20px rgba(201, 162, 39, 0.3);
+}
+div.stDownloadButton button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(201, 162, 39, 0.45);
+}
+
+/* ============================================================
    SIDEBAR
-========================================== */
+   ============================================================ */
 
 section[data-testid="stSidebar"] {
-    background: linear-gradient(
-        180deg,
-        #111827,
-        #1f2937
-    );
+    background: linear-gradient(180deg, var(--wine-950) 0%, #14070d 100%);
+    border-right: 1px solid var(--glass-border);
 }
 
-/* Fix invisible sidebar text */
+section[data-testid="stSidebar"] * { color: var(--cream-300) !important; }
 
-section[data-testid="stSidebar"] * {
-    color: white !important;
+.sidebar-brand {
+    text-align: center;
+    padding: 1.4rem 0 1rem;
 }
 
-/* Sidebar radio buttons */
+.sidebar-brand .crest {
+    width: 56px; height: 56px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem;
+    background: radial-gradient(circle at 35% 30%, var(--gold-300), var(--gold-500) 60%, var(--wine-700) 100%);
+    box-shadow: 0 0 24px rgba(201,162,39,0.35);
+}
 
-section[data-testid="stSidebar"] label {
-    color: white !important;
+.sidebar-brand h2 {
+    font-size: 1.25rem !important;
+    margin: 0 !important;
+    color: var(--cream-100) !important;
+}
+
+.sidebar-brand .sub {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold-400) !important;
+}
+
+/* Sidebar nav radio -> pill navigation */
+section[data-testid="stSidebar"] [role="radiogroup"] {
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+section[data-testid="stSidebar"] [role="radiogroup"] label {
+    padding: 10px 14px !important;
+    border-radius: var(--radius-sm) !important;
+    transition: all 0.25s var(--ease);
+    border: 1px solid transparent;
+    font-weight: 500 !important;
+}
+
+section[data-testid="stSidebar"] [role="radiogroup"] label:hover {
+    background: var(--glass-bg-strong);
+    border-color: var(--glass-border);
+}
+
+section[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"],
+section[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+    background: linear-gradient(135deg, rgba(130,33,63,0.55), rgba(201,162,39,0.16));
+    border-color: var(--gold-500);
+}
+
+.sidebar-info-card {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.sidebar-info-card b { color: var(--gold-400) !important; }
+
+/* ============================================================
+   TABS
+   ============================================================ */
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 6px;
+    background: var(--glass-bg);
+    padding: 6px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: var(--radius-sm);
+    color: var(--muted-400);
+    font-weight: 600;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, var(--wine-500), var(--wine-700));
+    color: var(--cream-100) !important;
+}
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.stNumberInput input, .stTextInput input, .stSelectbox > div, .stMultiSelect > div {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--cream-100) !important;
+}
+
+.stNumberInput input:focus, .stTextInput input:focus {
+    border-color: var(--gold-500) !important;
+    box-shadow: 0 0 0 3px rgba(201,162,39,0.18) !important;
+}
+
+label[data-testid="stWidgetLabel"] p {
+    color: var(--cream-300) !important;
     font-weight: 500;
 }
 
-/* ==========================================
-   HEADINGS
-========================================== */
-
-h1, h2, h3, h4 {
-    color: white !important;
-}
-
-p {
-    color: #d1d5db;
-}
-
-/* ==========================================
-   DATAFRAME
-========================================== */
+/* ============================================================
+   DATAFRAMES / TABLES
+   ============================================================ */
 
 [data-testid="stDataFrame"] {
-    border-radius: 15px;
+    border-radius: var(--radius-md);
     overflow: hidden;
+    border: 1px solid var(--glass-border);
 }
 
-/* ==========================================
-   TABLES
-========================================== */
-
-table {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* ==========================================
+/* ============================================================
    PLOTLY CHARTS
-========================================== */
-
-.js-plotly-plot {
-    border-radius: 20px;
-    overflow: hidden;
-}
+   ============================================================ */
 
 [data-testid="stPlotlyChart"] {
-    background: rgba(255,255,255,0.05);
-
-    padding: 10px;
-
-    border-radius: 20px;
-
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--glass-bg);
+    padding: 12px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+    transition: border-color 0.3s var(--ease);
 }
+[data-testid="stPlotlyChart"]:hover { border-color: var(--gold-500); }
 
-/* ==========================================
+/* ============================================================
    ALERTS
-========================================== */
+   ============================================================ */
 
-.stSuccess,
-.stInfo,
-.stWarning,
-.stError {
-    border-radius: 12px;
+.stAlert {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(10px);
 }
 
-/* ==========================================
+/* ============================================================
    FOOTER
-========================================== */
+   ============================================================ */
 
-.footer {
+.wineiq-footer {
     text-align: center;
-    padding: 20px;
-    color: white;
-    font-size: 14px;
+    padding: 2.2rem 1rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--glass-border);
 }
 
-/* ==========================================
-   ANIMATION
-========================================== */
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+.wineiq-footer h4 {
+    font-size: 1.1rem !important;
+    margin-bottom: 4px !important;
 }
-div.stDownloadButton button {
-    background: linear-gradient(
-        135deg,
-        #8b5cf6,
-        #ec4899
-    ) !important;
 
-    color: white !important;
+.wineiq-footer .small {
+    color: var(--muted-400);
+    font-size: 0.78rem;
+}
 
-    font-weight: 600 !important;
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 
-    border-radius: 15px !important;
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-    border: none !important;
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
 
-    box-shadow: 0 8px 20px rgba(236,72,153,0.4);
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .block-container { padding-left: 1rem; padding-right: 1rem; }
+    .hero { padding: 1.6rem 0.5rem 1.2rem; }
+    .wineiq-metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .wineiq-card { padding: 1.1rem 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .wineiq-metric-grid { grid-template-columns: 1fr; }
 }
