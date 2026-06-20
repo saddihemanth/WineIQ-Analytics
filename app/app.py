@@ -402,8 +402,7 @@ def prediction_page():
             summary_df,
             use_container_width=True
         )
-        from app.components.report_generator import generate_pdf
-
+    
         if st.button("Generate PDF Report"):
          pdf_file = generate_pdf(prediction)
 
